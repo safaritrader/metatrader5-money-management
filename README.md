@@ -12,8 +12,7 @@ A Metatrader 5 Trade Assistant
 
 ## getting Started
 1. **Installation**:
-First you need install requirements.txt
-Python 3.10
+First you need install Python 3.10 and then install requirements.txt
 3. **Edit**:
 edit this lines
 ```shell
@@ -26,4 +25,4 @@ Line 1499: Enter A Time for License!
 You have tutorial.json file when u pass the tutorial first parameter of it set to Learned You can edit it and set to Not Learned for new User's.
 
 ## License
-Metatrader5 Money Management is released under the MIT License
+![Logo of Metatrader 5 Trade Assistant,Metatrader 5 Money Management](logo.png) Metatrader5 Money Management is released under the MIT License
