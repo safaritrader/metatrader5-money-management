@@ -12,8 +12,9 @@ A Metatrader 5 Trade Assistant
 
 ## getting Started
 1. **Installation**:
-First you need install requirments
-2. **Edit**:
+First you need install requirements.txt
+Python 3.10
+3. **Edit**:
 edit this lines
 ```shell
 Line 64 : Enter Your Telegram User Id
