@@ -6,7 +6,8 @@ A Metatrader 5 Trade Assistant
 
 - [Whats MT5 Assistant](#whats-mt5-assistant)
 - [getting Started](#getting-started)
-
+- [License](#license)
+  
 ## Whats MT5 Assistant?
 ![Overview,Metatrader 5 Money Management](view.jpg)
 
