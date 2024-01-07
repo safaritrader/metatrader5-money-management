@@ -1,0 +1,174 @@
+{
+    "state": "Not Learned",
+    "stage0": {
+        "frames_pos": [
+            0,
+            0,
+            521,
+            550
+        ],
+        "arrow_pos": [],
+        "arrow": "",
+        "text": "Hello, I am Here for a Quick Tutorial, Please be with me because i have some important tutorial for how its work"
+    },
+    "stage1": {
+        "frames_pos": [
+            10,
+            120,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            150,
+            25,
+            102,
+            100
+        ],
+        "arrow": "bottom-right",
+        "text": "This the path of metatrader 5 if you want to find it just right click on your metatrader and click openfile location then enter the address like this: C:/ Program File/MetaTrader5/terminal64.exe"
+    },
+    "stage2": {
+        "frames_pos": [
+            10,
+            140,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            150,
+            45,
+            102,
+            100
+        ],
+        "arrow": "bottom-right",
+        "text": "This is Login Info Section! Enter Your Login info like this username:password:server => 123456:145785:Alpari-Demo . if u dont want enter this section just do nothing ang login into metatrader u specified above"
+    },
+    "stage3": {
+        "frames_pos": [
+            10,
+            210,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            150,
+            120,
+            102,
+            100
+        ],
+        "arrow": "bottom-right",
+        "text": "These Option is for Trading. Remember Every Time You Change The Symbol You Have To Press Enter or Click Start! Symbol Name Must Equal to Symbol Name In Your Broker They Have Different Names Like (XAUUSD.m, XAUUSD) If Letter is Upper Type it Exactly. You Can Just Set DrawDown Once Per Day Per Account. you can Save and load data. After All Press Enter Or Click Start to Start Linking Metatrader5!"
+    },
+    "stage4": {
+        "frames_pos": [
+            10,
+            310,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            150,
+            220,
+            102,
+            100
+        ],
+        "arrow": "bottom-right",
+        "text": "This Section is for loading your telegram data"
+    },
+    "stage5": {
+        "frames_pos": [
+            10,
+            390,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            160,
+            300,
+            102,
+            100
+        ],
+        "arrow": "bottom-right",
+        "text": "This Section Has Some Important Rules.1: If you select a position here,Actions like Press button Close1 or close2 or close all or free risk just include that trade you selected. but if u dont select any position and press that button's. trade action do things on current symbol that you specify in settings(Section Above!)"
+    },
+    "stage6": {
+        "frames_pos": [
+            20,
+            200,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            160,
+            340,
+            102,
+            100
+        ],
+        "arrow": "top-down",
+        "text": "This is Forex News Section. Time is Based on Your Device Local Time! You Will See Just News That Includes Your Current Symbol That You Specified On Settings. If Your Symbol Is XAUUSD You Will Just See Important News Of USD. If Your Symbol is EURUSD Your News Include EUR and USD. Alert Only Active For your Current Symbol, All News Gathering From Forex Factory Live Data"
+    },
+    "stage7": {
+        "frames_pos": [
+            20,
+            280,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            10,
+            410,
+            102,
+            100
+        ],
+        "arrow": "top-down",
+        "text": "If You Want See Statement and Live Chart For Define Stop Loss Press This Button. A Live Chart Based Your Current Symbol Will Be Open And When You Click On it If CheckBox of Dynamic StopLoss is Enabled Your StopLoss Will Be That Price Instead Of Min Sl(Static StopLoss) on Settings."
+    },
+    "stage8": {
+        "frames_pos": [
+            20,
+            360,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            240,
+            270,
+            102,
+            100
+        ],
+        "arrow": "bottom-left",
+        "text": "Here You Can See Total Profit And DrawDown. (DrawDown is Calculated Based On Start Balance of Each Day(even if you close me i'll remember what you done with your account!).You Can See Every Trade Action Result on Last Error!"
+    },
+    "stage9": {
+        "frames_pos": [
+            20,
+            300,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            240,
+            210,
+            102,
+            100
+        ],
+        "arrow": "bottom-left",
+        "text": "If You Want Using Auto Take Profit, You Can Enable it By Click CheckBox Blow Each RR. Remember This Section is Working For All Trade You Have and Doesn't Matter Whats Your Current Symbol in Setting. Each Position Reached The Target it Will Be Close By Your Custom %. If Your Trade On A Netting Account Every Trade You Executed By (B) or (S) (means Buy and Sell Not Half's) RR Will Reset.But in Hedging Mode Every Positions Calculation Is Separate."
+    },
+    "stage10": {
+        "frames_pos": [
+            20,
+            160,
+            461,
+            141
+        ],
+        "arrow_pos": [
+            240,
+            70,
+            102,
+            100
+        ],
+        "arrow": "bottom-left",
+        "text": "And There it is! Most Important Section. I'll leave You in this Section. GoodLuck!"
+    }
+}
