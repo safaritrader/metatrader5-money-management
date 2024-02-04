@@ -335,8 +335,8 @@ class Window(QMainWindow):
                 self.t_frame.hide()
                 self.t_arrow.hide()
                 self.tutorial_data = t
-        except:
-            pass
+        except Exception as error:
+            print(error)
 
         # self.installEventFilter(self)
 
@@ -350,11 +350,20 @@ class Window(QMainWindow):
     #         print(obj , print(event.type()))
     #     return super().eventFilter(obj, event)
     def sound_player(self):
+        """
+        play sound
+        :return:
+        """
         if self.sound == "news":
             self.news_sound_alert.play()
             self.sound = ""
 
     def mute_sound(self, which):
+        """
+        select sound and mute them
+        :param which:
+        :return:
+        """
         if which == 'trade':
             if self.click_sound.isMuted():
                 self.click_sound.setMuted(False)
@@ -372,11 +381,20 @@ class Window(QMainWindow):
         # self.sound_news
 
     def show_info_stage(self, stg):
+        """
+        start tutorial
+        :param stg:
+        :return:
+        """
         self.t_text_edit.setPlainText('')
         self.t_stage = stg
         self.start_tutorial()
 
     def tutorial_typer(self):
+        """
+        typer for tutorial in textbox
+        :return:
+        """
         if self.t_stage == 0 and self.welcome_playing:
             self.wlc.play()
             self.welcome_playing = False
@@ -389,6 +407,11 @@ class Window(QMainWindow):
             self.t_typer.stop()
 
     def t_action(self, act):
+        """
+        action buttons next or back
+        :param act:
+        :return:
+        """
         if act == 'next':
             if self.t_stage + 1 <= 10:
                 self.t_text_edit.setPlainText('')
@@ -413,6 +436,10 @@ class Window(QMainWindow):
                     json.dump(self.tutorial_data, f, indent=4)
 
     def start_tutorial(self):
+        """
+        start tutorial
+        :return:
+        """
         try:
             self.t_typer.stop()
             if self.tutorial_data is None:
@@ -436,10 +463,14 @@ class Window(QMainWindow):
             self.t_text = self.tutorial_data[f'stage{self.t_stage}']['text']
             self.t_text_index = 0
             self.t_typer.start()
-        except:
-            pass
+        except Exception as error:
+            print(error)
 
     def show_statement(self):
+        """
+        show statement
+        :return:
+        """
         if self.ui.show_statement_b.text() == "Statement":
             if self.mt5.last_error()[1] != 'No IPC connection' and self.mt5.last_error()[1] != '':
 
@@ -559,13 +590,27 @@ class Window(QMainWindow):
         pass
 
     def clear_tree_selection(self):
+        """
+        clear selection of symbol
+        :return:
+        """
         self.ui.pos_tree.clearSelection()
         self.ticket_current_symbol = 0
 
     def pos_click(self, item, column):
+        """
+        pos click
+        :param item:
+        :param column:
+        :return:
+        """
         self.ticket_current_symbol = float(item.text(1))
 
     def uptable(self):
+        """
+        update table
+        :return:
+        """
         try:
             pos = mt5.positions_get(group="*")
             sorted_tuple = sorted(pos, key=lambda x: x.time, reverse=True)
@@ -609,8 +654,8 @@ class Window(QMainWindow):
                             item.setForeground(4, QBrush(QColor("red")))
                         else:
                             item.setForeground(4, QBrush(QColor("black")))
-            except:
-                pass
+            except Exception as error:
+                print(error)
             try:
                 for x in range(self.ui.pos_tree.topLevelItemCount()):
                     item = self.ui.pos_tree.topLevelItem(x)
@@ -622,24 +667,42 @@ class Window(QMainWindow):
                         self.ui.pos_tree.takeTopLevelItem(x)
                         self.ui.pos_tree.clearSelection()
                         self.ticket_current_symbol = 0
-            except:
-                pass
-        except:
-            pass
+            except Exception as error:
+                print(error)
+        except Exception as error:
+            print(error)
 
     def RR1_chk(self):
+        """
+        check for rr1
+        :return:
+        """
         if self.ui.RR1.isChecked():
             self.rr1_timer.start()
         else:
             self.rr1_timer.stop()
 
     def RR2_chk(self):
+        """
+        check for rr2
+        :return:
+        """
         if self.ui.RR2.isChecked():
             self.rr2_timer.start()
         else:
             self.rr2_timer.stop()
 
     def trade_close(self, percentage, ticket, side, volume, comment, symbol):
+        """
+        close trade
+        :param percentage:
+        :param ticket:
+        :param side:
+        :param volume:
+        :param comment:
+        :param symbol:
+        :return:
+        """
         try:
             ask = mt5.symbol_info_tick(symbol).ask
             bid = mt5.symbol_info_tick(symbol).bid
@@ -668,6 +731,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml("Error On : " + comment + f" : {errr}")
 
     def RR1(self):
+        """
+        rr1 action
+        :return:
+        """
         positions = self.mt5.positions_get(group='*')
         det = self.mt5.account_info()._asdict()
         prf = float(det['balance']) * float(self.ui.RR_profitpct_1.text()) / 100
@@ -682,6 +749,10 @@ class Window(QMainWindow):
                     self.RRs['RR1'][str(positions[rr].ticket)] = positions[rr].symbol
 
     def RR2(self):
+        """
+        rr2 action
+        :return:
+        """
         positions = self.mt5.positions_get(group='*')
         det = self.mt5.account_info()._asdict()
         prf = float(det['balance']) * float(self.ui.RR_profitpct_2.text()) / 100
@@ -696,6 +767,10 @@ class Window(QMainWindow):
                     self.RRs['RR2'][str(positions[rr].ticket)] = positions[rr].symbol
 
     def chk(self):
+        """
+        check for sl
+        :return:
+        """
         if self.ui.show_chart_ch.isChecked():
             self.set_sl = True
             self.min_sl_buff = self.ui.minsl_t.text()
@@ -706,6 +781,7 @@ class Window(QMainWindow):
             self.ui.minsl_t.setEnabled(True)
 
     def chart_updater(self):
+        """update chart"""
         rates = self.mt5.copy_rates_from_pos(self.symbol, self.mt5.TIMEFRAME_M1, 0, 40)
         df = pd.DataFrame(rates)
         df['time'] = pd.to_datetime(df['time'], unit='s')
@@ -723,6 +799,11 @@ class Window(QMainWindow):
         self.plot_widget.addItem(self.candle)
 
     def on_mouse_click_chart(self, event):
+        """
+        set sl on chart
+        :param event:
+        :return:
+        """
         mouse_point = self.plot_widget.plotItem.vb.mapSceneToView(event.scenePos())
         if self.square.contains(mouse_point):
             self.line.setVisible(True)
@@ -734,6 +815,10 @@ class Window(QMainWindow):
             self.line.setVisible(False)
 
     def show_calendar(self):
+        """
+        show calendar
+        :return:
+        """
         self.ui.table_frame.show()
         self.ui.show_chart_b.show()
         self.ui.chart_frame.hide()
@@ -741,6 +826,10 @@ class Window(QMainWindow):
         self.chart_updater_timer.stop()
 
     def show_chart(self):
+        """
+        show chart
+        :return:
+        """
         self.ui.show_statement_b.setText("Statement")
         self.ui.table_frame.hide()
         self.ui.show_chart_b.hide()
@@ -762,16 +851,16 @@ class Window(QMainWindow):
             try:
                 self.plot_widget.removeItem(self.candle)
 
-            except:
-                pass
+            except Exception as error:
+                print(error)
             try:
                 self.plot_widget.removeItem(self.line)
-            except:
-                pass
+            except Exception as error:
+                print(error)
             try:
                 self.plot_widget.removeItem(self.square)
-            except:
-                pass
+            except Exception as error:
+                print(error)
             self.plot_widget.setYRange(mn, mx)
             self.square = PlotCurveItem([0, 0, lln, lln, 0], [mn, mx, mx, mn, mn],
                                         pen=mkPen(color=(255, 0, 0, 1), width=2))
@@ -794,6 +883,7 @@ class Window(QMainWindow):
             self.ui.show_chart_f.setLayout(self.layout)
 
     def set_img(self):
+        """telegram image"""
         try:
             pixmap = QPixmap("img/default_avatar.png")
 
@@ -860,6 +950,11 @@ class Window(QMainWindow):
             print("error Telegram")
 
     def localize_time(self, time_o):
+        """
+        localize time
+        :param time_o:
+        :return:
+        """
         my_time = time_o
         if 'All Day' not in time_o:
             if 'am' in time_o or 'pm' in time_o:
@@ -883,6 +978,10 @@ class Window(QMainWindow):
             return time_o
 
     def calendar(self):
+        """
+        calendar
+        :return:
+        """
         try:
             while True:
                 try:
@@ -951,6 +1050,10 @@ class Window(QMainWindow):
             print(erc)
 
     def closeall(self):
+        """
+        close all
+        :return:
+        """
         try:
             if self.ticket_current_symbol == 0:
                 positions = self.mt5.positions_get(symbol=self.symbol)
@@ -1027,6 +1130,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(error))
 
     def closepct2(self):
+        """
+        close percentage 2
+        :return:
+        """
         try:
             if self.ticket_current_symbol == 0:
                 positions = self.mt5.positions_get(symbol=self.symbol)
@@ -1111,6 +1218,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(error))
 
     def closepct(self):
+        """
+        close percentage 1
+        :return:
+        """
         try:
             if self.ticket_current_symbol == 0:
                 positions = self.mt5.positions_get(symbol=self.symbol)
@@ -1197,6 +1308,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(error))
 
     def freerisk(self):
+        """
+        free risk
+        :return:
+        """
         try:
             if self.ticket_current_symbol == 0:
                 positions = self.mt5.positions_get(symbol=self.symbol)
@@ -1238,6 +1353,16 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(error))
 
     def trade_act(self, fixed_lot, sl, risk, side, comment, devide):
+        """
+        trade action
+        :param fixed_lot:
+        :param sl:
+        :param risk:
+        :param side:
+        :param comment:
+        :param devide:
+        :return:
+        """
         det = self.mt5.account_info()._asdict()
         balance = float(det['balance'])
         rnd = int(self.mt5.symbol_info(self.symbol).digits)
@@ -1302,6 +1427,10 @@ class Window(QMainWindow):
         self.clear_tree_selection()
 
     def buy(self):
+        """
+        Buy
+        :return:
+        """
         try:
             self.trade_act(float(self.ui.fixedlot_t.text()), float(self.ui.minsl_t.text()),
                            float(self.ui.riskperc_t.text()), 'buy', "Buy", 1)
@@ -1312,6 +1441,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(erc))
 
     def halfbuy(self):
+        """
+        Half Buy
+        :return:
+        """
         try:
             self.trade_act(float(self.ui.fixedlot_t.text()), float(self.ui.minsl_t.text()),
                            float(self.ui.riskperc_t.text()), 'buy', "Half Buy", 2)
@@ -1320,6 +1453,7 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(erc))
 
     def sell(self):
+        """Sell"""
         try:
             self.trade_act(float(self.ui.fixedlot_t.text()), float(self.ui.minsl_t.text()),
                            float(self.ui.riskperc_t.text()), 'sell', "Sell", 1)
@@ -1330,6 +1464,7 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(erc))
 
     def halfsell(self):
+        """Half Sell"""
         try:
             self.trade_act(float(self.ui.fixedlot_t.text()), float(self.ui.minsl_t.text()),
                            float(self.ui.riskperc_t.text()), 'sell', "Half Sell", 2)
@@ -1338,6 +1473,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(erc))
 
     def save_info(self):
+        """
+        Save Setup
+        :return:
+        """
         ssl = self.ui.minsl_t.text() if self.min_sl_buff == "" else str(self.min_sl_buff)
         ss = {
             "mt5 path": self.ui.mt5terminalpath_t.text(),
@@ -1360,6 +1499,10 @@ class Window(QMainWindow):
                 json.dump(ss, f)
 
     def load_info(self):
+        """
+        Load Setup
+        :return:
+        """
         file_name, _ = QFileDialog.getOpenFileName(None, "Load File", "", "JSON Files (*.json)")
         if file_name:
             with open(file_name, 'r') as f:
@@ -1379,6 +1522,11 @@ class Window(QMainWindow):
                 self.ui.RR_closepct_2.setText(sd['RR2_close_pct'])
 
     def set_flag(self, situ):
+        """
+        check for start of day
+        :param situ:
+        :return:
+        """
         try:
             file_path = Path('accounts.json')
             det = self.mt5.account_info()._asdict()
@@ -1393,6 +1541,7 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(err))
 
     def flag_do(self, flag):
+        """Check For Draw Down"""
         if flag == 'drawdown':
             self.trade = False
             self.set_flag('drawdown')
@@ -1447,6 +1596,7 @@ class Window(QMainWindow):
             self.ui.drawdown_t.setEnabled(False)
 
     def balance_set(self):
+        """Set Balance For Start of Day"""
         try:
             file_path = Path(r'accounts.json')
             det = self.mt5.account_info()._asdict()
@@ -1495,6 +1645,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(str(erc))
 
     def start(self):
+        """
+        Start and initialize
+        :return:
+        """
         try:
             if datetime.strptime(datetime.now().strftime('%d/%m/%Y'), "%d/%m/%Y") > datetime.strptime("29/02/2024",
                                                                                                       "%d/%m/%Y"):
@@ -1538,6 +1692,10 @@ class Window(QMainWindow):
             self.ui.lasterror_l.setHtml(f'<b>{error}<b>')
 
     def set_prof(self):
+        """
+        Set Profit
+        :return:
+        """
         prof = 0
         if not self.calendar_e:
             self.ui.lasterror_l.setHtml("Calendar is Off By Getting Error")
