@@ -1443,7 +1443,7 @@ class Window(QMainWindow):
     def halfbuy(self):
         """
         Half Buy
-        :return:
+        :return: t
         """
         try:
             self.trade_act(float(self.ui.fixedlot_t.text()), float(self.ui.minsl_t.text()),
